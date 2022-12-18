@@ -9,7 +9,7 @@ git clone https://github.com/BozhkoAV/BTC-ETH-Converter.git
 
 2) Собрать Docker образ
 ``` console
-docker build -t btc-eth-converter .
+docker build -t btc-eth-converter BTC-ETH-Converter
 ```
 
 3) Запустить Docker образ
