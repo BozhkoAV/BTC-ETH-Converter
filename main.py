@@ -8,6 +8,8 @@ def main():
     result = exchange(amount, currency)
     if currency == "BTC":
         print(str(float(result)) + " ETH")
+    else:
+        print(str(float(result)) + " BTC")
 
 
 def currency_check(currency):
@@ -31,9 +33,7 @@ def amount_check(amount):
 
 
 def exchange(amount, currency):
-    rate = 0
-    if currency == "BTC":
-        rate = get_exchange_rate(currency)
+    rate = get_exchange_rate(currency)
     return round(amount * rate, 6)
 
 
@@ -42,7 +42,10 @@ def get_exchange_rate(currency):
         if currency == "BTC":
             response = requests.get('https://www.coingecko.com/en/coins/bitcoin/eth')
             info = re.findall(r"1 BTC = ETH\d+\.\d+", response.text)
-            return float(re.findall(r"\d+\.\d+", info[0])[0])
+        else:
+            response = requests.get('https://www.coingecko.com/en/coins/ethereum/btc')
+            info = re.findall(r"1 ETH = BTC\d+\.\d+", response.text)
+        return float(re.findall(r"\d+\.\d+", info[0])[0])
     except Exception:
         raise Exception("Проблемы с доступом к сайту")
 
