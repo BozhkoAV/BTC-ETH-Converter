@@ -1,9 +1,13 @@
 import re
+import requests
 
 
 def main():
-    currency_check(input("Введите конвертируемую валюту (BTC|ETH): "))
-    amount_check(input("Введите количество конвертируемой валюты: "))
+    currency = currency_check(input("Введите конвертируемую валюту (BTC|ETH): "))
+    amount = amount_check(input("Введите количество конвертируемой валюты: "))
+    result = exchange(amount, currency)
+    if currency == "BTC":
+        print(str(float(result)) + " ETH")
 
 
 def currency_check(currency):
@@ -24,6 +28,23 @@ def amount_check(amount):
               "Примеры: 123 | 100.12\n")
         amount = input("Введите количество конвертируемой валюты: ")
     return float(amount)
+
+
+def exchange(amount, currency):
+    rate = 0
+    if currency == "BTC":
+        rate = get_exchange_rate(currency)
+    return round(amount * rate, 6)
+
+
+def get_exchange_rate(currency):
+    try:
+        if currency == "BTC":
+            response = requests.get('https://www.coingecko.com/en/coins/bitcoin/eth')
+            info = re.findall(r"1 BTC = ETH\d+\.\d+", response.text)
+            return float(re.findall(r"\d+\.\d+", info[0])[0])
+    except Exception:
+        raise Exception("Проблемы с доступом к сайту")
 
 
 if __name__ == '__main__':
