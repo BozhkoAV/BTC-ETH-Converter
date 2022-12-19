@@ -1,3 +1,7 @@
+develop: ![Build Status](https://github.com/BozhkoAV/BTC-ETH-Converter/actions/workflows/python-app.yml/badge.svg?branch=develop) 
+
+main: ![Build Status](https://github.com/BozhkoAV/BTC-ETH-Converter/actions/workflows/python-app.yml/badge.svg?branch=main)
+
 # BTC-ETH-Converter
 Сервис, конвертирующий из BTC в ETH и из ETH в BTC.
 
