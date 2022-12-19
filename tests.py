@@ -45,3 +45,7 @@ class TestConverter(unittest.TestCase):
 
         mock_get_exchange_rate.return_value = 100.0
         self.assertEqual(7.0, exchange(0.07, "ETH"))
+
+
+if __name__ == "__main__":
+    unittest.main()
