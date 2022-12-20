@@ -1,10 +1,8 @@
 import re
 import requests
-import win_unicode_console
 
 
 def main():
-    win_unicode_console.enable()
     currency = currency_check(input("Введите конвертируемую валюту (BTC|ETH): "))
     amount = amount_check(input("Введите количество конвертируемой валюты: "))
     result = exchange(amount, currency)

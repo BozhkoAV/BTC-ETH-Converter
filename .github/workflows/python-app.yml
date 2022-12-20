@@ -39,7 +39,6 @@ jobs:
           python-version: "3.9"
       - name: Install dependencies
         run: |
-          pip install win-unicode-console
           pip install requests
       - name: test_windows
-        run: python ./tests.py
+        run: python -X utf8 ./tests.py
